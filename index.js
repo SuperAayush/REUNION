@@ -11,15 +11,12 @@ const postRoute = require("./routes/posts");
 
 dotenv.config();
 
-const MONGO_URL = `mongodb+srv://Check123:Check123@cluster0.dhywk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
+const CONNECTION_URL = 'mongodb+srv://Check123:Check123@cluster0.dhywk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+const PORT = process.env.PORT|| 5000;
 
-mongoose.connect(
-  MONGO_URL,
-  { useNewUrlParser: true, useUnifiedTopology: true },
-  () => {
-    console.log("Connected to MongoDB");
-  }
-);
+mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`)))
+  .catch((error) => console.log(`${error} did not connect`));
 
 //middleware
 app.use(express.json());
@@ -40,6 +37,4 @@ app.use("/api", authRoute);
 app.use("/api", userRoute);
 app.use("/api/posts", postRoute);
 
-app.listen(8080, () => {
-  console.log("Backend server is running!");
-});
+
