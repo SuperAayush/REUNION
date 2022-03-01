@@ -26,7 +26,7 @@ app.use(morgan("common"));
 
 app.get("/api/all_posts", async (req, res)=>{
   try {
-    const posts= await Post.find()
+    const posts= await Post.find();
     res.json(posts)
   } catch (err) {
     res.status(500).json({message: err.message});    

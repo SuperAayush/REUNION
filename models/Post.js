@@ -4,16 +4,16 @@ const PostSchema = new mongoose.Schema(
   {
     userId: {
       type: String,
-      require: true,
+      required: true,
     },
     title: {
       type: String,
-      require: true,
+      required: true,
       max: 500,
     },
     description: {
       type: String,
-      require: true,
+      required: true,
     },
     likes: {
       type: Array,
