@@ -4,7 +4,7 @@ const router = require("express").Router();
 const Post = require("../models/Post");
 const bcrypt = require("bcrypt");
 
-//get a user
+//GET A USER
 router.get("/:id", async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
@@ -15,7 +15,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-//follow a user
+//FOLLOW A USER
 router.post("/follow/:id", async (req, res) => {
   if (req.body.userId !== req.params.id) {
     try {
@@ -36,7 +36,7 @@ router.post("/follow/:id", async (req, res) => {
   }
 });
 
-//unfollow a user
+//UNFOLLOW A USER
 router.post("/unfollow/:id", async (req, res) => {
     if (req.body.userId !== req.params.id) {
       try {
@@ -57,7 +57,7 @@ router.post("/unfollow/:id", async (req, res) => {
     }
   });
 
-  //like a post
+  //LIKE A POST
 router.post("/like/:id", async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
@@ -69,7 +69,7 @@ router.post("/like/:id", async (req, res) => {
   }
 });
 
-// dislike a post
+// DISLIKE A POST
 router.post("/unlike/:id", async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
@@ -81,7 +81,7 @@ router.post("/unlike/:id", async (req, res) => {
   }
 });
 
-//comment on a post
+//COMMENT ON A POST
 router.post("/comment/:id", async (req, res) => {
   const newComment = new Comment(req.body);
   try {
@@ -95,13 +95,12 @@ router.post("/comment/:id", async (req, res) => {
   }
 });
 
-//all posts 
-router.get("/all_posts", async (req, res) => {
+//ALL POSTS
+router.get("/c/all_posts", async (req, res) => {
   try {
     const currentUser = await User.findById(req.body.userId);
-    const userPosts = await Post.find({ userId: currentUser._id });
-   const {userId, updatedAt, ...others} = userPosts._doc
-    res.json(others)
+    const userPosts = await Post.find({ userId: req.body.userId });
+    res.json(userPosts)
   } catch (err) {
     res.status(500).json(err);
   }

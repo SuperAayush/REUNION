@@ -11,6 +11,7 @@ const postRoute = require("./routes/posts");
 
 dotenv.config();
 
+//MONGODB ATLAS URL
 const CONNECTION_URL = 'mongodb+srv://Check123:Check123@cluster0.dhywk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 const PORT = process.env.PORT|| 8080;
 
@@ -23,15 +24,6 @@ app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
 
-
-app.get("/api/all_posts", async (req, res)=>{
-  try {
-    const posts= await Post.find();
-    res.json(posts)
-  } catch (err) {
-    res.status(500).json({message: err.message});    
-  }
-})
 
 app.use("/api", authRoute);
 app.use("/api", userRoute);
