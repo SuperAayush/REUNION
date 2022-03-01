@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+// THIS IS THE MONGOOSE SCHEMA FOR POSTS
 const PostSchema = new mongoose.Schema(
   {
     userId: {

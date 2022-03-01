@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+// THIS IS THE MONGOOSE SCHEMA FOR USERS
 const UserSchema = new mongoose.Schema(
   {
     username: {

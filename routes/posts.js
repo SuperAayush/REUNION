@@ -2,7 +2,7 @@ const router = require("express").Router();
 const Post = require("../models/Post");
 const User = require("../models/User");
 
-//create a post
+//CREATE A POST
 router.post("/", async (req, res) => {
   const newPost = new Post(req.body);
   try {
@@ -16,7 +16,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-//delete a post
+//DELETE A POST
 router.delete("/:id", async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
@@ -35,7 +35,7 @@ router.delete("/:id", async (req, res) => {
 
 
 
-//get a post
+//GET A POST
 router.get("/:id", async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);

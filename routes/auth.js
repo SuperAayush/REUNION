@@ -6,11 +6,11 @@ const jwt = require("jsonwebtoken");
 //ADDITION
 router.post("/add", async (req, res) => {
   try {
-    //generate new password
+    //GENARATE NEW PASSWORD
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
-    //create new user
+    //CREATE NEW PASSWORD
     const newUser = new User({
       name:req.body.name,
       username: req.body.username,
@@ -18,7 +18,7 @@ router.post("/add", async (req, res) => {
       password: hashedPassword,
     });
 
-    //save user and respond
+    //SAVE USER AND RESPOND
     const user = await newUser.save();
     res.status(200).json(user);
   } catch (err) {
